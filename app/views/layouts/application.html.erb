@@ -1,0 +1,22 @@
+<!-- views/layouts/application.html.erb -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MiniCapstone</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <a href="/client/products">Home</a>
+    <a href="/client/products/new">New Product</a>
+
+    <% flash.each do |name, message| %>
+      <p><%= message %></p>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
