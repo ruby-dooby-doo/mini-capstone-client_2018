@@ -1,5 +1,13 @@
 <h2><%= @product["name"] %></h2>
-<h4>Price: <%= @product["price"] %></h4>
+<% if @product["formatted"]["discounted"] %>
+    <h4 style="color: red;">Price: <%= @product["price"] %></h4>
+    <h1>Discount Item</h1>
+  <% else %>
+    <h4>Price: <%= @product["price"] %></h4>
+    <h1>Everyday Value!</h1>
+  <% end %>
+<h4>Tax: <%= @product["formatted"]["tax"] %></h4>
+<h4>Total: <%= @product["formatted"]["total"] %></h4>
 <h4>Description: <%= @product["description"] %></h4>
 <img src="<%= @product["image_url"] %>">
 
