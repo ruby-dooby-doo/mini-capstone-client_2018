@@ -1,4 +1,5 @@
 <h2><%= @product["name"] %></h2>
+<h1>made by: <%= @product["supplier"]["name"] %></h1>
 <% if @product["formatted"]["discounted"] %>
     <h4 style="color: red;">Price: <%= @product["price"] %></h4>
     <h1>Discount Item</h1>
