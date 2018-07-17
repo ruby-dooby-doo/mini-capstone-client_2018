@@ -10,10 +10,14 @@ Rails.application.routes.draw do
     delete '/products/:id' => 'products#destroy'
 
     # this is where the login routes are
-    get "/signup" => "users#new"
-    post "/users" => "users#create"
-    get "/login" => "sessions#new"
-    post "/login" => "sessions#create"
-    delete "/logout" => "sessions#destroy"
+    get '/signup' => 'users#new'
+    post '/users' => 'users#create'
+    get '/login' => 'sessions#new'
+    post '/login' => 'sessions#create'
+    delete '/logout' => 'sessions#destroy'
+
+    get '/orders/new' => 'orders#new'
+    get '/orders/:id' => 'orders#show'
+    post '/orders' => 'orders#create'
   end
 end
