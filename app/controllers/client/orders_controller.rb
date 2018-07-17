@@ -7,10 +7,6 @@ class Client::OrdersController < ApplicationController
     render "show.html.erb"
   end
 
-  def new
-    render "new.html.erb"
-  end
-
   def create
     response = Unirest.post("localhost:3000/api/orders",
       parameters: {
