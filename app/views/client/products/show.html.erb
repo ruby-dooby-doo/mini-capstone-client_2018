@@ -24,9 +24,13 @@
 <a href="/client/products/<%= @product['id'] %>/edit">Edit</a>
 <a href="/client/products/<%= @product['id'] %>" data-method="delete">Delete</a>
 
+<br>
+<br>
+<br>
+<br>
 
-<%= form_tag "/client/orders", method: :post do %>
-  <p><input type="hidden" name="product_id" value="<%= @product['id'] %>"></p>
-  <p>quantity:<input type="text" name="quantity"></p>
-  <input type="submit" value="Place your order here">
+<%= form_tag "/client/carted_products", method: :post do %>
+  product_id: <input type="hidden" name="product_id" value="<%= @product['id'] %>">
+  quantity: <input type="text" name="quantity">
+  <input type="submit" value="Add an item to your cart">
 <% end %>
