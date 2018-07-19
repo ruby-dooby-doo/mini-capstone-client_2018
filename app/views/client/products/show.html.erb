@@ -9,6 +9,13 @@
   <% end %>
 <h4>Tax: <%= @product["formatted"]["tax"] %></h4>
 <h4>Total: <%= @product["formatted"]["total"] %></h4>
+<h4>Categories:</h4>
+<ul>
+<% @product["categories"].each do |category| %>
+
+  <li><%= category['name'] %></li>
+<% end %>
+</ul>
 <h4>Description: <%= @product["description"] %></h4>
 <% @product["images"].each do |image| %>
   <img src="<%= image['url'] %>" alt="">
