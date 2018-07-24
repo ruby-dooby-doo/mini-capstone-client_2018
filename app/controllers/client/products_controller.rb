@@ -56,20 +56,26 @@ class Client::ProductsController < ApplicationController
   end
 
   def update
-    client_params = {
-                     name: params[:name],
-                     price: params[:price],
-                     description: params[:description],
-                     image_url: params[:image_url]
-                    }
+    @product = {
+                 "name" => params[:name],
+                 "price" => params[:price],
+                 "description" => params[:description],
+                 "image_url" => params[:image_url]
+                }
 
     response = Unirest.patch(
                             "http://localhost:3000/api/products/#{params[:id]}",
-                            parameters: client_params
+                            parameters: @product
                             )
 
-    flash[:success] = "Successfully updated Product"
-    redirect_to "/client/products/#{params[:id]}"
+    if response.code == 200
+      flash[:success] = "Successfully updated Product"
+      redirect_to "/client/products/#{params[:id]}"
+    else
+      # give the user another try to complete the form
+      @errors = response.body['errors']
+      render 'edit.html.erb'
+    end
   end
 
   def destroy
