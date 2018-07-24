@@ -13,24 +13,33 @@ class Client::ProductsController < ApplicationController
   end
 
   def new
+    @product = {}
     render 'new.html.erb'
   end
 
   def create
-    client_params = {
-                     name: params[:name],
-                     price: params[:price],
-                     description: params[:description],
-                     supplier_id: params[:supplier_id]
-                    }
+    @product = {
+                 name: params[:name],
+                 price: params[:price],
+                 description: params[:description],
+                 supplier_id: params[:supplier_id]
+                }
 
     response = Unirest.post(
                             "http://localhost:3000/api/products",
-                            parameters: client_params
+                            parameters: @product
                             )
 
-    flash[:success] = "Successfully created Product"
-    redirect_to "/client/products/"
+    if response.code == 200
+      flash[:success] = "Successfully created Product"
+      redirect_to "/client/products"
+    else
+      # sad path
+      # show them the errors
+      @errors = response.body['errors']
+      # show the user the form again
+      render 'new.html.erb'
+    end
   end
 
   def show
